@@ -34,13 +34,13 @@ spec:
         - name: xing-oauth2-proxy
           args:
             - --provider=oidc
-            - --oidc-issuer-url=https://sso.infineon.com 
+            - --oidc-issuer-url=https://federate.infineon.com
             - --email-domain=*
             - --upstream=http://localhost:4200
             - --http-address=:8080
-            - --redirect-url=https://rd-datalake-test.icp.infineon.com/oauth2/callback
+            - --redirect-url=https://rd-datalake-test.icp.infineon.com/oauth/callback
             - --client-id=rddl 
-            - --client-secret=oKlbVzzdP7qxOCDDKmdzUJD1vNMwReR4p2KLLEMg8zRQKSmvQZcBT3naIdYW2rYV 
+            - --client-secret=IaZNevN6glcw1k0A4luKtL1cjh1nWErddiMYIE418rVQ8pwoMmRBbe0kVIgQXwGX
             - --cookie-secret=dJUszKDhOZ5MBlA5LDuunawk84Bea7UyNseujkqMA6U=
             - --prompt=none
             - --show-debug-on-error=true 
