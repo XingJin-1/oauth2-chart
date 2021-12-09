@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata: 
+  name: xing-appserver-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: xing-myapp
+  
+  template:
+    metadata:
+      labels:
+        app: xing-myapp
+    spec:
+      containers:
+        - name: xing-myapp
+          image: openshift-registry.eu-de-3.icp.infineon.com/playground-xj-1/vue-app-15
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4200
+          resources:
+            limits:
+              memory: "50Mi"
+              cpu: "500m"
+        - name: xing-oauth2-proxy
+          args:
+            - --provider=oidc
+            - --oidc-issuer-url=https://sso.infineon.com 
+            - --email-domain=*
+            - --upstream=http://localhost:4200
+            - --http-address=:8080
+            - --redirect-url=https://rd-datalake-dev.icp.infineon.com/oauth/callback
+            - --client-id=rddl 
+            - --client-secret=oKlbVzzdP7qxOCDDKmdzUJD1vNMwReR4p2KLLEMg8zRQKSmvQZcBT3naIdYW2rYV 
+            - --cookie-secret=dJUszKDhOZ5MBlA5LDuunawk84Bea7UyNseujkqMA6U=
+            - --prompt=none
+            - --show-debug-on-error=true 
+            - --errors-to-info-log=true
+            - --proxy-prefix=/oauth
+            - --pass-authorization-header=true 
+            - --set-authorization-header=true
+            - --pass-access-token=true
+            - --set-xauthrequest=true
+          env:
+          - name: OAUTH2_PROXY_CLIENT_ID
+            value: rddl
+          - name: OAUTH2_PROXY_CLIENT_SECRET
+            value: oKlbVzzdP7qxOCDDKmdzUJD1vNMwReR4p2KLLEMg8zRQKSmvQZcBT3naIdYW2rYV
+          - name: OAUTH2_PROXY_COOKIE_SECRET
+            value: dJUszKDhOZ5MBlA5LDuunawk84Bea7UyNseujkqMA6U=
+          image: dockerregistry-v2.vih.infineon.com/openshift/oauth2-proxy:latest
+          imagePullPolicy: Always
+          name: oauth2-proxy
+          ports:
+          - containerPort: 8080
+            protocol: TCP
