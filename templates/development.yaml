@@ -19,14 +19,17 @@ spec:
     spec:
       containers:
         - name: xing-myapp
-          image: openshift-registry.eu-de-3.icp.infineon.com/playground-xj-1/vue-app-15
+          image: openshift-registry.eu-de-3.icp.infineon.com/rddl-develop/xing-vue-app-1
           imagePullPolicy: Always
           ports:
-            - containerPort: 4200
+            - containerPort: 4200          
           resources:
             limits:
-              memory: "50Mi"
-              cpu: "500m"
+              cpu: 300m
+              memory: 750Mi
+            requests:
+              cpu: 150m
+              memory: 750Mi
         - name: xing-oauth2-proxy
           args:
             - --provider=oidc
@@ -53,7 +56,7 @@ spec:
             value: oKlbVzzdP7qxOCDDKmdzUJD1vNMwReR4p2KLLEMg8zRQKSmvQZcBT3naIdYW2rYV
           - name: OAUTH2_PROXY_COOKIE_SECRET
             value: dJUszKDhOZ5MBlA5LDuunawk84Bea7UyNseujkqMA6U=
-          image: dockerregistry-v2.vih.infineon.com/openshift/oauth2-proxy:latest
+          image: quay.io/oauth2-proxy/oauth2-proxy:latest
           imagePullPolicy: Always
           name: oauth2-proxy
           ports:
