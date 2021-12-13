@@ -6,7 +6,7 @@ metadata:
   name: xing-appserver-route
   
 spec:
-  host: rd-datalake-test-oauth2.icp.infineon.com
+  host: oauth2-playground-xj-1.eu-de-3.icp.infineon.com
   to:
     kind: Service
     name: xing-appserver-service

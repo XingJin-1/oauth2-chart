@@ -3,6 +3,8 @@ kind: Service
 
 metadata:
   name: xing-appserver-service
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: xing-myapp-tls
 
 spec:
   selector:

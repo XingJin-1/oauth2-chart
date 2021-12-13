@@ -21,7 +21,7 @@ spec:
       containers:
         - name: xing-oauth2-proxy
           volumeMounts:
-            - name: xing-secrete
+            - name: xing-myapp-tls
               mountPath: /etc/tls/private
           terminationMessagePolicy: File
           args:
@@ -30,7 +30,7 @@ spec:
             - --email-domain=*
             - --upstream=http://localhost:4200
             - --https-address=:8080
-            - --redirect-url=https://rd-datalake-test-oauth2.icp.infineon.com/oauth2/callback
+            - --redirect-url=https://oauth2-playground-xj-1.eu-de-3.icp.infineon.com/oauth2/callback
             - --client-id=rddl 
             - --client-secret=IaZNevN6glcw1k0A4luKtL1cjh1nWErddiMYIE418rVQ8pwoMmRBbe0kVIgQXwGX
             - --cookie-secret=dJUszKDhOZ5MBlA5LDuunawk84Bea7UyNseujkqMA6U=
@@ -57,18 +57,18 @@ spec:
           - containerPort: 8080
             protocol: TCP
         - name: xing-myapp
-          image: openshift-registry.eu-de-3.icp.infineon.com/rddl-test/xing-vue-app-1
+          image: openshift-registry.eu-de-3.icp.infineon.com/playground-xj-1/vue-app-15
           imagePullPolicy: Always
           ports:
             - containerPort: 4200          
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "50m"
+              memory: 1Gi
+              cpu: 750m
             limits:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: 1Gi
+              cpu: 750m
       volumes:
-        - name: xing-secrete
+        - name: xing-myapp-tls
           secret:
-            secretName: xing-appserver-secret
+            secretName: xing-myapp-tls
