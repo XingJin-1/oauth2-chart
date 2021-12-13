@@ -21,7 +21,7 @@ spec:
       containers:
         - name: xing-oauth2-proxy
           volumeMounts:
-            - name: grafana-tls
+            - name: xing-appserver-secret
               mountPath: /etc/tls/private
           terminationMessagePolicy: File
           args:
