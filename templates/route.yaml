@@ -10,7 +10,10 @@ spec:
   to:
     kind: Service
     name: xing-appserver-service
-
+  tls:
+    termination: reencrypt
+  wildcardPolicy: None
+  
 status:
   ingress:
     - host: rd-datalake-test-oauth2.icp.infineon.com
