@@ -21,7 +21,7 @@ spec:
       containers:
         - name: xing-oauth2-proxy
           volumeMounts:
-            - name: xing-appserver-secret
+            - name: xing-secrete
               mountPath: /etc/tls/private
           terminationMessagePolicy: File
           args:
@@ -68,3 +68,7 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "100m"
+      volumes:
+        - name: xing-secrete
+          secret:
+            secretName: xing-appserver-secret
