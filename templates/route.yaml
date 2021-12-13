@@ -13,8 +13,7 @@ spec:
   tls:
     termination: reencrypt
   wildcardPolicy: None
-  
-status:
-  ingress:
-    - host: rd-datalake-test-oauth2.icp.infineon.com
-      routerCanonicalHostname: eu-de-3.icp.infineon.com
+
+
+https://rd-datalake-dev.icp.infineon.com
+http://rd-datalake-test-oauth2.icp.infineon.com/oauth2/callback

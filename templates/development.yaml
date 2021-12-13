@@ -29,7 +29,7 @@ spec:
             - --oidc-issuer-url=https://federate.infineon.com
             - --email-domain=*
             - --upstream=http://localhost:4200
-            - --https-address=:4180
+            - --https-address=:8080
             - --redirect-url=https://rd-datalake-test-oauth2.icp.infineon.com/oauth2/callback
             - --client-id=rddl 
             - --client-secret=IaZNevN6glcw1k0A4luKtL1cjh1nWErddiMYIE418rVQ8pwoMmRBbe0kVIgQXwGX
@@ -54,7 +54,7 @@ spec:
           imagePullPolicy: Always
           name: oauth2-proxy
           ports:
-          - containerPort: 4180
+          - containerPort: 8080
             protocol: TCP
         - name: xing-myapp
           image: openshift-registry.eu-de-3.icp.infineon.com/rddl-test/xing-vue-app-1

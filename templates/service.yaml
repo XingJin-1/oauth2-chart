@@ -7,10 +7,11 @@ metadata:
 spec:
   selector:
     app: xing-myapp
-  
   ports:
     - port: 443
-      targetPort: 4180
+      targetPort: 8080
       protocol: TCP
-
   type: ClusterIP
+  sessionAffinity: None
+status:
+  loadBalancer: {}  
