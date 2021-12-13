@@ -6,14 +6,10 @@ metadata:
   name: xing-appserver-route
   
 spec:
-  host: rd-datalake-test-oauth2.icp.infineon.com
+  host: http://rd-datalake-test-oauth2.icp.infineon.com
   to:
     kind: Service
     name: xing-appserver-service
   tls:
     termination: reencrypt
   wildcardPolicy: None
-
-
-https://rd-datalake-dev.icp.infineon.com
-http://rd-datalake-test-oauth2.icp.infineon.com/oauth2/callback
